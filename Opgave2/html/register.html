@@ -1,0 +1,15 @@
+﻿<p>Denne tabel viser et register over forskellige fødevares protein indhold angivet som gram protein pr. 100 gram</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>Proteinkilde</th>
+            <th>Gram protein pr. 100 gram</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr ng-repeat="proteinkilde in proteinkilder">
+            <td>{{proteinkilde.navn}}</td>
+            <td >{{proteinkilde.protein}}</td>
+        </tr>
+    </tbody>
+</table>

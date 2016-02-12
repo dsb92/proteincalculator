@@ -1,0 +1,22 @@
+﻿<table class="table">
+    <thead>
+    <tr>
+        <th>Daglig proteinindtag</th>
+        <th>Daglig proteinbehov</th>
+        <th>Ugegennemsnitlig proteinindtag</th>
+        <th>Ugegennemsnitlig proteinbehov</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr>
+        <td>{{totalProtein | number:1}}</td>
+        <td>{{proteinBehov | number:1}}</td>
+        <td>-</td> // MANGLER Ugentlig proteinindtag
+        <td>{{proteinBehov | number:1}}</td>
+    </tr>
+    </tbody>
+</table>
+
+<div ng-hide="hasReached()">
+    <h3>Du mangler {{proteinBehov-totalProtein | number:1}} gram protein endnu for i dag!</h3>
+</div>

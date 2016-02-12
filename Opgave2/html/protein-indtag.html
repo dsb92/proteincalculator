@@ -1,0 +1,50 @@
+﻿<p>Beregn dit daglige proteinindtag ved at indtaste mængden af de forskellige fødevarer, som du indtager i løbet af dagen</p>
+<form name="addFoodForm" ng-submit="addFoodForm.$valid && addFood(selectedOption.id, inputGrams)" novalidate>
+    <div class="form-inline">
+        <div class="form-group">
+            <label>Fødevare</label>
+            <select class="form-control" ng-options="proteinkilde.navn for proteinkilde in proteinkilder" ng-model="selectedOption" required></select>
+        </div>
+        <div class="form-group">
+            <label>Mængde i gram</label>
+            <input type="number" min="1" class="form-control" placeholder="Indtast mængde i gram" ng-model="inputGrams" required>
+        </div>
+        <div class="form-group">
+            <label>Beregnet Gram protein</label>
+            <input type="number" class="form-control" readonly placeholder="{{(selectedOption.protein/100) * inputGrams | number:1}}">
+        </div>
+        <div class="form-group">
+            <label></label>
+            <input type="submit" class="btn btn-default form-control" value="Tilføj">
+        </div>
+    </div>
+    <div ng-hide="addFoodForm.$valid">Indtast gyldige værdier</div>
+</form>
+
+
+<hr />
+
+<h2>Tabel</h2>
+<p>Denne tabel viser det daglige proteinindtag over fødevarer som er blevet indtaget løbet af dagen</p>
+<input type="button" class="btn btn-default" value="Ny liste" ng-click="deleteAll()">
+<table class="table">
+    <thead>
+        <tr>
+            <th>Fødevare</th>
+            <th>Mængde i gram</th>
+            <th>Beregnet Gram protein</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr ng-model="personalList" ng-repeat="item in personalList">
+            <td>{{item.proteinKilde.navn}}</td>
+            <td>{{item.maengde}}</td>
+            <td>{{calcConsumedProtein(item) | number:1}}</td>
+        </tr>
+        <tr>
+            <td>I alt </td>
+            <td></td>
+            <td>{{totalProtein | number:1}}</td>
+        </tr>
+    </tbody>
+</table>

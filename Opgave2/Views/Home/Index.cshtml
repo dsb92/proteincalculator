@@ -1,0 +1,48 @@
+﻿@{
+    ViewBag.Title = "Kostplanen";
+}
+
+<h2>Personlige kostplan</h2>
+
+<div class="container" ng-app="kost">
+    <bruger-data ng-init="getUser()"></bruger-data>
+    <hr/>
+    <section ng-controller="PanelController">
+        <ul class="nav nav-pills" ng-init="tab = 1">
+            <li ng-class="{ active:isSelected(1) }">
+                <a ng-click="selectTab(1)">Fødevare register</a>
+            </li>
+            <li ng-class="{ active:isSelected(2) }">
+                <a ng-click="selectTab(2)">Daglig proteinindtag</a>
+            </li>
+            <li ng-class="{ active:isSelected(3) }">
+                <a ng-click=selectTab(3)>Statestik</a>
+            </li>
+        </ul>
+
+        <div class="panel" ng-show="tab === 1">
+            <h4>Fødevare register</h4>
+            <register ng-init="showAll()"></register>
+        </div>
+        <div class="panel" ng-show="tab === 2">
+            <h4>Daglig proteinindtag</h4>
+            <protein-indtag ng-init="getProteinSources()"></protein-indtag>
+        </div>
+        <div class="panel" ng-show="tab === 3">
+            <h4>Statestik</h4>
+            <statestik ng-init="getStatestics()"></statestik>
+        </div>
+    </section>
+</div>
+
+
+
+@section scripts {
+    @Scripts.Render("~/Scripts/angular.js")
+    @Scripts.Render("~/Scripts/app/app.js")
+    @Scripts.Render("~/Scripts/app/bruger.js")
+    @Scripts.Render("~/Scripts/app/register.js")
+    @Scripts.Render("~/Scripts/app/proteinindtag.js")
+    @Scripts.Render("~/Scripts/app/statestik.js")
+    @Scripts.Render("~/Scripts/angular-fusioncharts.js")
+}

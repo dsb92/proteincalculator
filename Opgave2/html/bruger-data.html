@@ -1,0 +1,50 @@
+﻿<form name="userForm" ng-submit="userForm.$valid && sendUser(brugerId, vaegt, tilstand)" novalidate>
+    <div class="container">
+        <div class="row">
+            <label class="col-sm-2 control-label">Brugernavn</label>
+            <div class="col-sm-10">
+                <p class="form-control-static">{{brugerId}}</p>
+            </div>
+        </div>
+        <div class="row">
+            <label class="col-sm-2 control-label">Vægt</label>
+            <div class="col-sm-10">
+                <input type="number" min="1" class="form-control" value="vaegt" placeholder="Angiv vægt" ng-model="vaegt" ng-change="dataSaved = false" required>
+            </div>
+            <div class="col-sm-10">
+                <p class="form-control-static">{{vaegt}} kg</p>
+            </div>
+        </div>
+        <div class="row">
+            <div class="radio">
+                <label>
+                    <input type="radio" name="optionsRadios" id="optionsRadios1" value="Voksen" ng-model="tilstand" ng-change="dataSaved = false" checked>
+                    Voksen
+                </label>
+            </div>
+            <div class="radio">
+                <label>
+                    <input type="radio" name="optionsRadios" id="optionsRadios2" value="Syg" ng-model="tilstand" ng-change="dataSaved = false">
+                    Syge/Svækkede
+                </label>
+            </div>
+            <div class="radio">
+                <label>
+                    <input type="radio" name="optionsRadios" id="optionsRadios3" value="Muskel" ng-model="tilstand" ng-change="dataSaved = false">
+                    Hård træning(muskelopbygning)
+                </label>
+            </div>
+        </div>
+        <div class="row">
+            <label class="col-sm-2 control-label">Type</label>
+            <div class="col-sm-10">
+                <p class="form-control-static">{{tilstand}}</p>
+            </div>
+        </div>
+
+        <input type="submit" class="btn btn-default" ng-click="dataSaved = true" value="Gem" ng-show="(!userForm.$pristine && userForm.$valid) && !dataSaved">
+
+    </div>
+    <div ng-hide="userForm.$valid">Indtast gyldige værdier</div>
+</form>
+
